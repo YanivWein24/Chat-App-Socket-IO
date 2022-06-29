@@ -1,13 +1,22 @@
-import express from 'express';
+import express from 'express'
 import cors from 'cors'
-import { Server } from 'socket.io';
-import { createServer } from 'http';
+import { Server } from 'socket.io'
+import { createServer } from 'http'
+import router from './router.js'
 
-const app = express();
-const server = createServer(app);
-const socketio = new Server(server);
+const app = express()
+const server = createServer(app)
+const io = new Server(server)
 
-app.get('/', (req, res) => res.send('API is running...'))
+io.on('connection', (socket) => {
+    console.log("New connection")
+
+    socket.on('disconnect', () => {
+        console.log("User left")
+    })
+})
+
+app.use(router)
 
 const PORT = process.env.PORT || 5000
 
