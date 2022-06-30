@@ -5,6 +5,7 @@ import "./Chat.css"
 
 // const socket = io.connect();
 const socket = io.connect("http://localhost:5000")
+console.log(socket)
 
 const Chat = () => {
     const [name, setName] = useState('')
@@ -16,7 +17,12 @@ const Chat = () => {
 
         setName(name)
         setRoom(room)
-        socket.emit('join', { name, room })
+        socket.emit('join', { name, room }, () => { }) // es6 syntax for "name: name, room: room "
+
+        return () => {
+            socket.disconnect()
+            socket.off() // remove the socket instance
+        }
     }, [socket, window.location.search])
 
     return (

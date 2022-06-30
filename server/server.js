@@ -3,6 +3,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const router = require('./router.js')
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js')
 
 const app = express();
 app.use(cors());
@@ -17,12 +18,17 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+    // the "socket" object is being sent from the client every time a we do 'socket.emit'
     console.log(`User Connected: ${socket.id}`);
 
-    socket.on('join', ({ name, room }) => {
-        console.log(name, room)
+    socket.on('join', ({ name, room }, callback) => {
+        const { error, user } = addUser({ id: socket.id, name, room })
+        // 'addUser' can return either a user or an error
+        if (error) return callback(error)
+        socket.join(user.room)
     })
 
+    // get called from the client using 'socket.disconnect()'
     socket.on('disconnect', () => {
         console.log(`${socket.id} has disconnected`)
     })
