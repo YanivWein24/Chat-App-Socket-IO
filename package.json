@@ -2,10 +2,9 @@
   "name": "socket-io",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server/server",
+    "start": "node server/server",
     "server": "nodemon server/server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""

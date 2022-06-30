@@ -16,7 +16,7 @@ body {
     align-items: center;
     height: 100vh;
     background: rgb(189, 195, 199);
-    background: linear-gradient(90deg, rgba(189, 195, 199, 1) 0%, rgba(44, 62, 80, 1) 100%);
+    background: linear-gradient(90deg, rgb(197, 216, 229) 0%, rgb(28, 46, 66) 100%);
 }
 
 .joinInnerContainer {
@@ -24,6 +24,7 @@ body {
 }
 
 .joinInput {
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 30px;
     padding: 15px 20px;
     width: 100%;
@@ -37,21 +38,24 @@ body {
 }
 
 .button {
-    color: #fff !important;
+    font-weight: 700;
+    color: #2979FF;
     text-transform: capitalize;
     text-decoration: none;
-    background: #2979FF;
+    background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 30px;
     display: inline-block;
-    border: none;
+    border: 3px solid #2979FF;
     width: 100%;
-    transition: all .2s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .button:hover {
-    transform: scale(1.03);
+    /* transform: scale(1.03); */
     outline: 2;
+    color: white;
+    background-color: #2979FF;
 }
 
 .button:active {

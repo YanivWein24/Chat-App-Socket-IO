@@ -1,25 +1,37 @@
-import express from 'express'
-import cors from 'cors'
-import { Server } from 'socket.io'
-import { createServer } from 'http'
-import router from './router.js'
+const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
+const cors = require("cors");
+const router = require('./router.js')
 
-const app = express()
-const server = createServer(app)
-const io = new Server(server)
+const app = express();
+app.use(cors());
 
-io.on('connection', (socket) => {
-    console.log("New connection")
+const server = http.createServer(app);
+
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"],
+    },
+});
+
+io.on("connection", (socket) => {
+    console.log(`User Connected: ${socket.id}`);
+
+    socket.on('join', ({ name, room }) => {
+        console.log(name, room)
+    })
 
     socket.on('disconnect', () => {
-        console.log("User left")
+        console.log(`${socket.id} has disconnected`)
     })
-})
+});
 
 app.use(router)
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`)
 })
