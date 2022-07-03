@@ -3,7 +3,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const router = require('./router.js')
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js')
+const { addUser, removeUser, getUser, getUsersInRoom, users } = require('./users.js')
 
 const app = express();
 app.use(cors());
@@ -22,11 +22,25 @@ io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
     socket.on('join', ({ name, room }, callback) => {
-        const { error, user } = addUser({ id: socket.id, name, room })
+        const { error, newUser } = addUser({ id: socket.id, name, room })
+        console.log("new user", newUser)
         // 'addUser' can return either a user or an error
         if (error) return callback(error)
-        socket.join(user.room)
+
+        socket.emit('message', { user: 'Admin', text: `Hello ${newUser.name}, Welcome to room ${newUser.room}` })
+        socket.broadcast.to(newUser.room).emit('message', { user: 'Admin', text: `${newUser.name} has joined` })
+        // send a message to all members in the room
+        socket.join(newUser.room)
+
+        callback()
     })
+
+    socket.on('sendMessage', (message, callback) => {
+        const user = getUser(socket.id)
+        console.log("user", user)
+        io.to(user.room).emit('message', { user: user.name, text: message })
+        callback()
+    });
 
     // get called from the client using 'socket.disconnect()'
     socket.on('disconnect', () => {

@@ -49,10 +49,10 @@ body {
     border: 3px solid #2979FF;
     width: 100%;
     transition: all .3s ease-in-out;
+    cursor: pointer;
 }
 
 .button:hover {
-    /* transform: scale(1.03); */
     outline: 2;
     color: white;
     background-color: #2979FF;
