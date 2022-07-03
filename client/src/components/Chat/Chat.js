@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import InfoBar from "../InfoBar/InfoBar.js"
 import Input from "../Input/Input.js"
 import Messages from "../Messages/Messages"
+import OnlineUsers from "../OnlineUsers/OnlineUsers"
 import "./Chat.css"
 
 const socket = io.connect("http://localhost:5000")
@@ -54,26 +55,11 @@ const Chat = () => {
             <div className="container">
                 <InfoBar room={room} showAllUsers={showAllUsers} setShowAllUsers={setShowAllUsers} />
                 {showAllUsers ?
-                    <h2 className="allUsers fade-in">
-                        <button className="returnButton" onClick={() => setShowAllUsers(false)}>
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </button>
-                        <h2 className="allUsersHeader fade-in">Currently Connected Users:</h2>
-                        {users.map(({ name }) => (
-                            <div key={name} className="activeItem">
-                                <div className="onlineUser">
-                                    <i className="onlineIcon fa-solid fa-circle" style={{ fontSize: ".6rem" }}></i>
-                                    {name}
-                                </div>
-                            </div>
-                        ))}
-                    </h2>
+                    <OnlineUsers setShowAllUsers={setShowAllUsers} users={users} />
                     :
-                    // <div className="fade-in">
                     <>
                         <Messages messages={messages} name={name} />
                         <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-                        {/* </div> */}
                     </>
                 }
             </div>
