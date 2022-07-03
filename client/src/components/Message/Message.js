@@ -1,5 +1,7 @@
 import React from 'react'
 import "./Message.css"
+import ReactEmoji from 'react-emoji'
+
 const date = new Date()
 
 const Message = ({ message: { text, user }, name }) => {
@@ -12,6 +14,8 @@ const Message = ({ message: { text, user }, name }) => {
         sentByCurrentUser = true;
     }
 
+    const userIsAdmin = user === "Admin"
+
     const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
     const time = `${date.getHours()}:${minutes}`
     return (
@@ -20,17 +24,17 @@ const Message = ({ message: { text, user }, name }) => {
                 <>
                     <div className="messageContainer justifyEnd">
                         <div className="messageBox backgroundBlue">
-                            <p className="messageText colorWhite">{text}</p>
+                            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
                         </div>
                     </div>
                     <p className="sentText pr-10">You {time}</p>
                 </>
             )
             : (
-                <>
-                    <div className="messageContainer justifyStart">
-                        <div className="messageBox backgroundLight">
-                            <p className="messageText colorDark">{text}</p>
+                < >
+                    <div className="messageContainer justifyStart" >
+                        <div className="messageBox backgroundLight" style={{ backgroundColor: userIsAdmin && "#cdd9ec" }}>
+                            <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
                         </div>
                     </div>
                     <p className="sentText pl-10 ">{user} {time}</p>

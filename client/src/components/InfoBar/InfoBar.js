@@ -1,7 +1,7 @@
 import React from 'react'
 import "./InfoBar.css"
 
-const InfoBar = ({ room }) => {
+const InfoBar = ({ room, showAllUsers, setShowAllUsers }) => {
     return (
         <div className="infoBar">
             <div className="leftInnerContainer">
@@ -9,7 +9,12 @@ const InfoBar = ({ room }) => {
                 <h3>Room: {room}</h3>
             </div>
             <div className="rightInnerContainer">
-                <a href="/"><i className="fa-solid fa-circle-xmark exitButton"></i></a>
+                {showAllUsers === false &&
+                    <button className="showUsers" onClick={() => setShowAllUsers(!showAllUsers)}>
+                        <i className="fa-solid fa-user-group" />
+                    </button>
+                }
+                <a href="/"><i className="fa-solid fa-circle-xmark exitButton" ></i></a>
             </div>
         </div>
     )

@@ -13,6 +13,8 @@ const Chat = () => {
     const [room, setRoom] = useState('')
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+    const [users, setUsers] = useState('');
+    const [showAllUsers, setShowAllUsers] = useState(false)
 
     useEffect(() => {
         const urlQueries = window.location.search // returns the queries from the url: ?name=...&room=...
@@ -32,7 +34,11 @@ const Chat = () => {
         socket.on('message', (message) => {
             setMessages([...messages, message])
         })
-    }, [messages])
+        socket.on("usersInRoom", ({ users }) => {
+            setUsers(users);
+        })
+    }
+        , [messages])
 
     const sendMessage = (e) => {
         e.preventDefault()
@@ -46,9 +52,30 @@ const Chat = () => {
     return (
         <div className="outerContainer fade-in">
             <div className="container">
-                <InfoBar room={room} />
-                <Messages messages={messages} name={name} />
-                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+                <InfoBar room={room} showAllUsers={showAllUsers} setShowAllUsers={setShowAllUsers} />
+                {showAllUsers ?
+                    <h2 className="allUsers fade-in">
+                        <button className="returnButton" onClick={() => setShowAllUsers(false)}>
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </button>
+                        <h2 className="allUsersHeader fade-in">Currently Connected Users:</h2>
+                        {users.map(({ name }) => (
+                            <div key={name} className="activeItem">
+                                <div className="onlineUser">
+                                    <i className="onlineIcon fa-solid fa-circle" style={{ fontSize: ".6rem" }}></i>
+                                    {name}
+                                </div>
+                            </div>
+                        ))}
+                    </h2>
+                    :
+                    // <div className="fade-in">
+                    <>
+                        <Messages messages={messages} name={name} />
+                        <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+                        {/* </div> */}
+                    </>
+                }
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import "./Input.css"
 
 const Input = ({ message, setMessage, sendMessage }) => {
     return (
-        <form className="form">
+        <form className="form fade-in">
             <input
                 className="input"
                 type="text"

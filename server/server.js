@@ -1,8 +1,8 @@
-const express = require("express");
-const http = require("http");
-const { Server } = require("socket.io");
-const cors = require("cors");
-const router = require('./router.js')
+const express = require("express")
+const http = require("http")
+const { Server } = require("socket.io")
+const cors = require("cors")
+const path = require('path')
 const { addUser, removeUser, getUser, getUsersInRoom, users } = require('./users.js')
 
 const app = express();
@@ -28,29 +28,42 @@ io.on("connection", (socket) => {
         if (error) return callback(error)
 
         socket.emit('message', { user: 'Admin', text: `Hello ${newUser.name}, Welcome to room ${newUser.room}` })
-        socket.broadcast.to(newUser.room).emit('message', { user: 'Admin', text: `${newUser.name} has joined` })
+        socket.broadcast.to(newUser.room).emit('message', { user: 'Admin', text: `${newUser.name} has joined!` })
         // send a message to all members in the room
         socket.join(newUser.room)
 
+        io.to(newUser.room).emit('usersInRoom', { room: newUser.room, users: getUsersInRoom(newUser.room) })
         callback()
     })
 
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
-        console.log("user", user)
-        io.to(user.room).emit('message', { user: user.name, text: message })
-        callback()
+        if (user) {
+            console.log("user", user)
+            io.to(user.room).emit('message', { user: user.name, text: message })
+            callback()
+        }
     });
 
     // get called from the client using 'socket.disconnect()'
     socket.on('disconnect', () => {
         const user = removeUser(socket.id)
-        if (user) io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left` })
-        console.log(`${socket.id} has disconnected`)
+        if (user) {
+            io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` })
+            io.to(user.room).emit('usersInRoom', { room: user.room, users: getUsersInRoom(user.room) })
+            console.log(`${socket.id} has disconnected`)
+        }
     })
 });
 
-app.use(router)
+//? ----------------------------- While in production: -----------------------------
+
+// const dirName = __dirname.slice(0, -7)
+// app.use(express.static(path.join(dirName, '/client/build')))
+// // '*' - any route that is not declared in the api routes
+// console.log(path.join(dirName, '/client/build'))
+// app.get('*', (req, res) => res.sendFile(path.resolve(dirName, 'client', 'build', 'index.html')))
+// ? ----------------------------- End - While in production: -----------------------------
 
 const PORT = process.env.PORT || 5000
 

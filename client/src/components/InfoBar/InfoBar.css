@@ -30,5 +30,21 @@
 
 .exitButton {
     color: #FFFFFF;
-    font-size: 1.5rem
+    font-size: 1.8rem;
+    transition: all .2s ease-in-out;
+}
+
+.showUsers {
+    font-size: 1rem;
+    padding: 5px;
+    margin-right: 5%;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.exitButton:hover,
+.showUsers:hover {
+    transform: scale(1.15);
 }
