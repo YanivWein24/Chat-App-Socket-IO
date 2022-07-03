@@ -10,7 +10,7 @@ const Join = () => {
     return (
         <div className="joinOuterContainer fade-in">
             <div className="joinInnerContainer">
-                <h1 className="heading">Join <i class="fa-solid fa-arrow-right-to-bracket"></i></h1>
+                <h1 className="heading">Join <i className="fa-solid fa-arrow-right-to-bracket"></i></h1>
                 <div>
                     <input placeholder="Name" className="joinInput" type="text" onChange={(e) => setName(e.target.value)} />
                 </div>

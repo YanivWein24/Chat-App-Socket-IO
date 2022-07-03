@@ -1,7 +1,6 @@
 import React from 'react'
 import "./InfoBar.css"
 
-
 const InfoBar = ({ room }) => {
     return (
         <div className="infoBar">
