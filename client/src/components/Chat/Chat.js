@@ -47,7 +47,7 @@ const Chat = () => {
         <div className="outerContainer fade-in">
             <div className="container">
                 <InfoBar room={room} />
-                <Messages />
+                <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
         </div>
