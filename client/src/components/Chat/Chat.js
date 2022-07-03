@@ -7,7 +7,7 @@ import Messages from "../Messages/Messages"
 import OnlineUsers from "../OnlineUsers/OnlineUsers"
 import "./Chat.css"
 
-const socket = io.connect("http://localhost:5000")
+const socket = io.connect("http://192.168.1.184:5000")
 
 const Chat = () => {
     const [name, setName] = useState('')

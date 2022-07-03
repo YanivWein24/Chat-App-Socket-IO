@@ -21,24 +21,24 @@ const Message = ({ message: { text, user }, name }) => {
     return (
         sentByCurrentUser
             ? (
-                <>
-                    <div className="messageContainer justifyEnd">
+                <div className="swing-in-top-fwd">
+                    <div className="messageContainer justifyEnd ">
                         <div className="messageBox backgroundBlue">
                             <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
                         </div>
                     </div>
                     <p className="sentText pr-10">You {time}</p>
-                </>
+                </div>
             )
             : (
-                < >
-                    <div className="messageContainer justifyStart" >
+                <div className="slide-in-left">
+                    <div className="messageContainer justifyStart">
                         <div className="messageBox backgroundLight" style={{ backgroundColor: userIsAdmin && "#cdd9ec" }}>
                             <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
                         </div>
                     </div>
                     <p className="sentText pl-10 ">{user} {time}</p>
-                </>
+                </div>
             )
     )
 }

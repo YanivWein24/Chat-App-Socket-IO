@@ -3,7 +3,7 @@ const http = require("http")
 const { Server } = require("socket.io")
 const cors = require("cors")
 const path = require('path')
-const { addUser, removeUser, getUser, getUsersInRoom, users } = require('./users.js')
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js')
 
 const app = express();
 app.use(cors());
@@ -12,7 +12,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "http://192.168.1.184:3000",
         methods: ["GET", "POST"],
     },
 });
