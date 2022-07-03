@@ -43,7 +43,7 @@ const Chat = () => {
     console.log("messages:", messages)
 
     return (
-        <div className="outerContainer">
+        <div className="outerContainer fade-in">
             <div className="container">
                 <InfoBar room={room} />
 
