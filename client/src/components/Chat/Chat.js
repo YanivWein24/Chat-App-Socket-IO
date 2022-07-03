@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import queryString from 'query-string';
 import io from "socket.io-client";
 import "./Chat.css"
+import "../InfoBar/InfoBar.css"
+import InfoBar from "../InfoBar/InfoBar.js"
 
 const socket = io.connect("http://localhost:5000")
 
@@ -43,8 +45,10 @@ const Chat = () => {
     return (
         <div className="outerContainer">
             <div className="container">
-                <input value={message} onChange={(e) => setMessage(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && sendMessage(e)} />
+                <InfoBar room={room} />
+
+                {/* <input value={message} onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && sendMessage(e)} /> */}
             </div>
         </div>
     )
