@@ -46,6 +46,10 @@
     background-color: #e5f0fc;
 }
 
+.fa-user-group {
+    color: #2979FF;
+}
+
 .exitButton:hover,
 .showUsers:hover {
     transform: scale(1.15);

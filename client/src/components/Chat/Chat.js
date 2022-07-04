@@ -24,7 +24,6 @@ const Chat = () => {
         setName(name)
         setRoom(room)
         socket.emit('join', { name, room }, () => { }) // es6 syntax for "name: name, room: room "
-
         // return () => {
         //     socket.disconnect()
         //     socket.off() // remove the socket instance
@@ -39,7 +38,7 @@ const Chat = () => {
             setUsers(users);
         })
     }
-        , [messages])
+        , [messages, users])
 
     const sendMessage = (e) => {
         e.preventDefault()
