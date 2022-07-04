@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import queryString from 'query-string';
 import io from "socket.io-client";
-import InfoBar from "../InfoBar/InfoBar.js"
-import Input from "../Input/Input.js"
-import Messages from "../Messages/Messages"
-import OnlineUsers from "../OnlineUsers/OnlineUsers"
+import InfoBar from "../../components/InfoBar/InfoBar.js"
+import Input from "../../components/Input/Input.js"
+import Messages from "../../components/Messages/Messages"
+import OnlineUsers from "../../components/OnlineUsers/OnlineUsers"
 import "./Chat.css"
 
 const socket = io.connect("https://socket-io-messenger.herokuapp.com/")
