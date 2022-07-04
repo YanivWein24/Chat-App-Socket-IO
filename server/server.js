@@ -12,7 +12,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://192.168.1.184:3000",
+        origin: "http://socket-io-messenger.herokuapp.com/",
         methods: ["GET", "POST"],
     },
 });
@@ -57,11 +57,11 @@ io.on("connection", (socket) => {
 
 //? ----------------------------- While in production: -----------------------------
 
-// const dirName = __dirname.slice(0, -7)
-// app.use(express.static(path.join(dirName, '/client/build')))
-// // '*' - any route that is not declared in the api routes
-// console.log(path.join(dirName, '/client/build'))
-// app.get('*', (req, res) => res.sendFile(path.resolve(dirName, 'client', 'build', 'index.html')))
+const dirName = __dirname.slice(0, -7)
+app.use(express.static(path.join(dirName, '/client/build')))
+// '*' - any route that is not declared in the api routes
+console.log(path.join(dirName, '/client/build'))
+app.get('*', (req, res) => res.sendFile(path.resolve(dirName, 'client', 'build', 'index.html')))
 // ? ----------------------------- End - While in production: -----------------------------
 
 const PORT = process.env.PORT || 5000
