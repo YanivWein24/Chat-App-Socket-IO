@@ -7,12 +7,11 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js')
 
 const app = express();
 app.use(cors());
-
 const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://socket-io-messenger.herokuapp.com/",
+        origin: "https://socket-io-messenger.herokuapp.com/",
         methods: ["GET", "POST"],
     },
 });

@@ -7,7 +7,7 @@ import Messages from "../Messages/Messages"
 import OnlineUsers from "../OnlineUsers/OnlineUsers"
 import "./Chat.css"
 
-const socket = io.connect("http://socket-io-messenger.herokuapp.com/")
+const socket = io.connect("https://socket-io-messenger.herokuapp.com/")
 
 const Chat = () => {
     const [name, setName] = useState('')
