@@ -55,7 +55,7 @@ const Chat = () => {
         <div className="outerContainer fade-in">
             <div className="container"
                 style={{
-                    background: showAllUsers && "transparent",
+                    background: showAllUsers && "linear-gradient(rgb(47, 125, 255) 0%, rgb(131, 96, 195) 100%)",
                     height: showAllUsers && smallScreen && "100%"
                 }}>
                 <InfoBar room={room} showAllUsers={showAllUsers} setShowAllUsers={setShowAllUsers} />
