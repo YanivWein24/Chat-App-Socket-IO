@@ -19,7 +19,7 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
     // the "socket" object is being sent from the client every time a we do 'socket.emit'
-    console.log(`User Connected: ${socket.id}`);
+    console.log(`New Socket ID: ${socket.id}`);
 
     socket.on('join', ({ name, room }, callback) => {
         const { error, newUser } = addUser({ id: socket.id, name, room })
@@ -39,7 +39,6 @@ io.on("connection", (socket) => {
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
         if (user) {
-            console.log("user", user)
             io.to(user.room).emit('message', { user: user.name, text: message })
             callback()
         }

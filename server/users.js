@@ -1,4 +1,4 @@
-const users = []
+let users = []
 
 const addUser = ({ id, name, room }) => {
     // removes white spaces and turns to lower case
@@ -17,7 +17,9 @@ const addUser = ({ id, name, room }) => {
 const removeUser = (id) => {
     const user = users.find((user) => user.id === id)
     if (user) {
-        users.splice(user, 1)[0]
+        console.log("Removing user:", user)
+        users = users.filter((existingUser) => existingUser.id !== user.id)
+        console.log(users)
         return user
     }
 }
