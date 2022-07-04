@@ -16,7 +16,7 @@ body {
     align-items: center;
     height: 100vh;
     background: rgb(189, 195, 199);
-    background: linear-gradient(90deg, rgb(197, 216, 229) 0%, rgb(28, 46, 66) 100%);
+    background: linear-gradient(90deg, rgb(41, 121, 255) 0%, rgb(131, 96, 195) 100%);
 }
 
 .joinInnerContainer {
@@ -28,6 +28,12 @@ body {
     border-radius: 30px;
     padding: 15px 20px;
     width: 100%;
+    color: white;
+    border: 1px solid white
+}
+
+.joinInput::placeholder {
+    color: white;
 }
 
 .heading {
@@ -39,14 +45,14 @@ body {
 
 .button {
     font-weight: 700;
-    color: #2979FF;
+    color: white;
     text-transform: capitalize;
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     padding: 20px;
     border-radius: 30px;
     display: inline-block;
-    border: 3px solid #2979FF;
+    border: 3px solid rgba(255, 255, 255, .7);
     width: 100%;
     transition: all .3s ease-in-out;
     cursor: pointer;
@@ -55,7 +61,7 @@ body {
 .button:hover {
     outline: 2;
     color: white;
-    background-color: #2979FF;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .button:active {
@@ -70,5 +76,13 @@ body {
 
     .joinInnerContainer {
         width: 90%;
+    }
+}
+
+@media (min-width: 1600px) {
+
+    .button,
+    .joinInput {
+        width: 80%;
     }
 }

@@ -18,6 +18,7 @@ const Message = ({ message: { text, user }, name }) => {
 
     const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
     const time = `${date.getHours()}:${minutes}`
+
     return (
         sentByCurrentUser
             ? (
@@ -33,7 +34,7 @@ const Message = ({ message: { text, user }, name }) => {
             : (
                 <div className="slide-in-left">
                     <div className="messageContainer justifyStart">
-                        <div className="messageBox backgroundLight" style={{ backgroundColor: userIsAdmin && "#cdd9ec" }}>
+                        <div className="messageBox backgroundLight" style={{ backgroundColor: userIsAdmin && "#82b0ff" }}>
                             <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
                         </div>
                     </div>

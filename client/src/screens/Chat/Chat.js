@@ -49,9 +49,15 @@ const Chat = () => {
 
     console.log("messages:", messages)
 
+    const smallScreen = window.innerWidth < 480
+
     return (
         <div className="outerContainer fade-in">
-            <div className="container">
+            <div className="container"
+                style={{
+                    background: showAllUsers && "transparent",
+                    height: showAllUsers && smallScreen && "100%"
+                }}>
                 <InfoBar room={room} showAllUsers={showAllUsers} setShowAllUsers={setShowAllUsers} />
                 {showAllUsers ?
                     <OnlineUsers setShowAllUsers={setShowAllUsers} users={users} />
