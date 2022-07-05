@@ -11,15 +11,16 @@ const Join = () => {
         <div className="joinOuterContainer fade-in">
             <div className="joinInnerContainer">
                 <h1 className="heading">Join <i className="fa-solid fa-arrow-right-to-bracket"></i></h1>
+                {room && <p style={{ color: "white" }}>Joining Room: {room} &ensp; {name && `As: ${name}`}</p>}
                 <div>
-                    <input placeholder="Name" className="joinInput" type="text" onChange={(e) => setName(e.target.value)} />
+                    <input placeholder="Room" className="joinInput" type="text" onChange={(e) => setRoom(e.target.value)} />
                 </div>
                 <div>
-                    <input placeholder="Room" className="joinInput mt-20" type="text" onChange={(e) => setRoom(e.target.value)} />
+                    <input placeholder="Name" className="joinInput mt-20" type="text" onChange={(e) => setName(e.target.value)} />
                 </div>
                 {/* if there is no value for 'name' or 'room', prevent default and stay in the same route, else continue as usual  */}
                 <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
-                    <button className='button mt-20' type="submit">Sign In</button>
+                    <button className='button' type="submit">Sign In</button>
                 </Link>
             </div>
         </div>

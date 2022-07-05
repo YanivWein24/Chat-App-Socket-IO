@@ -24,11 +24,7 @@ const Chat = () => {
         setName(name)
         setRoom(room)
         socket.emit('join', { name, room }, () => { }) // es6 syntax for "name: name, room: room "
-        // return () => {
-        //     socket.disconnect()
-        //     socket.off() // remove the socket instance
-        // }
-    }, [socket, window.location.search])
+    }, [socket])
 
     useEffect(() => {
         socket.on('message', (message) => {
@@ -46,8 +42,6 @@ const Chat = () => {
             socket.emit('sendMessage', message, () => setMessage(''))
         }
     }
-
-    console.log("messages:", messages)
 
     const smallScreen = window.innerWidth < 480
 
