@@ -20,12 +20,10 @@ io.on("connection", (socket) => {
     // the "socket" object is being sent from the client every time a we do 'socket.emit'
     console.log(`New Socket ID: ${socket.id}`);
 
-    socket.on('join', ({ name, room }, callback) => {
-        const { error, newUser } = addUser({ id: socket.id, name, room })
+    socket.once('join', ({ name, room }, callback) => {
+        // we're using socket.once instead of socket.on to prevent multiple request form the same user
+        const { newUser } = addUser({ id: socket.id, name, room })
         console.log("new user", newUser)
-        // 'addUser' can return either a user or an error
-        if (error) return callback(error)
-
         socket.emit('message', { user: 'Admin', text: `Hello ${newUser.name}, Welcome to room ${newUser.room}` })
         socket.broadcast.to(newUser.room).emit('message', { user: 'Admin', text: `${newUser.name} has joined!` })
         // send a message to all members in the room
@@ -49,7 +47,7 @@ io.on("connection", (socket) => {
         if (user) {
             io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` })
             io.to(user.room).emit('usersInRoom', { room: user.room, users: getUsersInRoom(user.room) })
-            console.log(`${socket.id} has disconnected`)
+            console.log(`${user.name} has disconnected`)
         }
     })
 });

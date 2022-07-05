@@ -5,10 +5,12 @@ const addUser = ({ id, name, room }) => {
     name = name.trim().toLowerCase()
     room = room.trim().toLowerCase()
 
-    const isUserExist = users.find((user) => user.name === name && user.room === room)
-    if (!name || !room) return { error: 'Username and room are required.' }
-    if (isUserExist) return { error: "Username is already used" }
-
+    let isUserExist = users.find((user) => user.name === name && user.room === room)
+    // if true, keep adding "2" to the username until we get an available name
+    while (isUserExist) {
+        name = name + "2"
+        isUserExist = users.find((user) => user.name === name && user.room === room)
+    }
     const newUser = { id, name, room }
     users.push(newUser)
     return { newUser }
@@ -19,7 +21,6 @@ const removeUser = (id) => {
     if (user) {
         console.log("Removing user:", user)
         users = users.filter((existingUser) => existingUser.id !== user.id)
-        console.log(users)
         return user
     }
 }

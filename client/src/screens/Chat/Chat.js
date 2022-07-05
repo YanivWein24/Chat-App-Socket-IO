@@ -20,7 +20,6 @@ const Chat = () => {
     useEffect(() => {
         const urlQueries = window.location.search // returns the queries from the url: ?name=...&room=...
         const { name, room } = queryString.parse(urlQueries) // returns an object that contain the queries: {name: "...", room: "..."}
-
         setName(name)
         setRoom(room)
         socket.emit('join', { name, room }, () => { }) // es6 syntax for "name: name, room: room "
