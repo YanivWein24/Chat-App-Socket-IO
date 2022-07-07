@@ -58,7 +58,7 @@ const Chat = () => {
                     background: showAllUsers && "linear-gradient(rgb(47, 125, 255) 0%, rgb(131, 96, 195) 100%)",
                     height: showAllUsers && smallScreen && "100%"
                 }}>
-                <InfoBar room={room} showAllUsers={showAllUsers} setShowAllUsers={setShowAllUsers} />
+                <InfoBar room={room} users={users} showAllUsers={showAllUsers} setShowAllUsers={setShowAllUsers} />
                 {showAllUsers ?
                     <OnlineUsers setShowAllUsers={setShowAllUsers} users={users} />
                     :

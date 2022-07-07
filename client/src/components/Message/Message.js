@@ -2,9 +2,8 @@ import React from 'react'
 import "./Message.css"
 import ReactEmoji from 'react-emoji'
 
-const date = new Date()
 
-const Message = ({ message: { text, user }, name }) => {
+const Message = ({ message: { text, user, time }, name }) => {
     // inside server.js we call 'sendMessage' and emit a new message containing the user and the text.
     // now we destruct this object to receive both of the values.  
     let sentByCurrentUser = false;
@@ -15,9 +14,6 @@ const Message = ({ message: { text, user }, name }) => {
     }
 
     const userIsAdmin = user === "Admin"
-
-    const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-    const time = `${date.getHours()}:${minutes}`
 
     return (
         sentByCurrentUser

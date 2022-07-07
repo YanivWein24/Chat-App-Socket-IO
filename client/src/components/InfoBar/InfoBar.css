@@ -16,6 +16,14 @@
     color: #FFFFFF;
 }
 
+.leftInnerContainer h3 {
+    text-align: center;
+}
+
+.ml-10 {
+    margin-left: 10%;
+}
+
 .rightInnerContainer {
     display: flex;
     flex: 0.5;
@@ -24,9 +32,14 @@
 }
 
 .onlineIcon {
-    margin-right: 5%;
-    font-size: .7rem;
+    margin-right: 3%;
+    font-size: .6rem;
     color: rgb(10, 236, 10);
+}
+
+.roomIcon {
+    margin-right: 3%;
+    font-size: 1.5rem;
 }
 
 .exitButton {

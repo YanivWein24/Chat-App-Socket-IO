@@ -24,8 +24,11 @@ io.on("connection", (socket) => {
         // we're using socket.once instead of socket.on to prevent multiple request form the same user
         const { newUser } = addUser({ id: socket.id, name, room })
         console.log("new user", newUser)
-        socket.emit('message', { user: 'Admin', text: `Hello ${newUser.name}, Welcome to room ${newUser.room}` })
-        socket.broadcast.to(newUser.room).emit('message', { user: 'Admin', text: `${newUser.name} has joined!` })
+        const date = new Date()
+        const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+        const time = `${date.getHours()}:${minutes}`
+        socket.emit('message', { user: 'Admin', text: `Hello ${newUser.name}, Welcome to room ${newUser.room}`, time: time })
+        socket.broadcast.to(newUser.room).emit('message', { user: 'Admin', text: `${newUser.name} has joined!`, time: time })
         // send a message to all members in the room
         socket.join(newUser.room)
 
@@ -35,7 +38,11 @@ io.on("connection", (socket) => {
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
         if (user) {
-            io.to(user.room).emit('message', { user: user.name, text: message })
+            const date = new Date()
+            const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+            const time = `${date.getHours()}:${minutes}`
+            console.log(time)
+            io.to(user.room).emit('message', { user: user.name, text: message, time: time })
             callback()
         }
     });
@@ -44,7 +51,10 @@ io.on("connection", (socket) => {
     socket.on('disconnect', () => {
         const user = removeUser(socket.id)
         if (user) {
-            io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` })
+            const date = new Date()
+            const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+            const time = `${date.getHours()}:${minutes}`
+            io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.`, time: time })
             io.to(user.room).emit('usersInRoom', { room: user.room, users: getUsersInRoom(user.room) })
             console.log(`${user.name} has disconnected`)
         }

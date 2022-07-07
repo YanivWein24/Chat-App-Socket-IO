@@ -1,12 +1,15 @@
 import React from 'react'
 import "./InfoBar.css"
 
-const InfoBar = ({ room, showAllUsers, setShowAllUsers }) => {
+const InfoBar = ({ room, users, showAllUsers, setShowAllUsers }) => {
     return (
         <div className="infoBar">
             <div className="leftInnerContainer">
-                <i className="onlineIcon fa-solid fa-circle" alt="online icon"></i>
+                <i class="fa-solid fa-comment-dots roomIcon"></i>
+
                 <h3>Room: {room}</h3>
+                <i className="onlineIcon fa-solid fa-circle ml-10" alt="online icon"></i>
+                <h3 className="">Online: {users.length}</h3>
             </div>
             <div className="rightInnerContainer">
                 {showAllUsers === false &&
