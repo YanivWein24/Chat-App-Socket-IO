@@ -16,6 +16,14 @@ const io = new Server(server, {
     },
 });
 
+// convert from heroku's server time zone to israel's time zone (GMT0 -> GMT+3)
+const herokuToIsraelTimeZone = (hours) => {
+    if (hours === 21) return 0
+    else if (hours === 22) return 1
+    else if (hours === 23) return 2
+    else { return hours + 3 }
+}
+
 io.on("connection", (socket) => {
     // the "socket" object is being sent from the client every time a we do 'socket.emit'
     console.log(`New Socket ID: ${socket.id}`);
@@ -26,12 +34,11 @@ io.on("connection", (socket) => {
         console.log("new user", newUser)
         const date = new Date()
         const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-        const time = `${date.getHours()}:${minutes}`
+        const time = `${herokuToIsraelTimeZone(date.getHours())}:${minutes}`
         socket.emit('message', { user: 'Admin', text: `Hello ${newUser.name}, Welcome to room ${newUser.room}`, time: time })
         socket.broadcast.to(newUser.room).emit('message', { user: 'Admin', text: `${newUser.name} has joined!`, time: time })
         // send a message to all members in the room
         socket.join(newUser.room)
-
         io.to(newUser.room).emit('usersInRoom', { room: newUser.room, users: getUsersInRoom(newUser.room) })
     })
 
@@ -40,7 +47,7 @@ io.on("connection", (socket) => {
         if (user) {
             const date = new Date()
             const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-            const time = `${date.getHours()}:${minutes}`
+            const time = `${herokuToIsraelTimeZone(date.getHours())}:${minutes}`
             console.log(time)
             io.to(user.room).emit('message', { user: user.name, text: message, time: time })
             callback()
@@ -53,7 +60,7 @@ io.on("connection", (socket) => {
         if (user) {
             const date = new Date()
             const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-            const time = `${date.getHours()}:${minutes}`
+            const time = `${herokuToIsraelTimeZone(date.getHours())}:${minutes}`
             io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.`, time: time })
             io.to(user.room).emit('usersInRoom', { room: user.room, users: getUsersInRoom(user.room) })
             console.log(`${user.name} has disconnected`)
