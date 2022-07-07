@@ -5,7 +5,7 @@ const OnlineUsers = ({ setShowAllUsers, users }) => {
     return (
         <div className="allUsers fade-in">
             <button className="returnButton" onClick={() => setShowAllUsers(false)}>
-                <i class="fa-solid fa-arrow-right-long"></i>
+                <i className="fa-solid fa-arrow-right-long"></i>
             </button>
             <h2 className="allUsersHeader fade-in">Currently Connected Users :</h2>
             {users.map(({ name }) =>

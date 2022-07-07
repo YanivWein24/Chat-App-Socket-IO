@@ -10,7 +10,7 @@ const Input = ({ message, setMessage, sendMessage }) => {
 
     return (
         <form className="form fade-in">
-            <textArea
+            <textarea
                 className="text"
                 id="text"
                 placeholder="Type a message..."

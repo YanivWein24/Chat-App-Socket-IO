@@ -9,11 +9,17 @@ import "./Chat.css"
 
 const socket = io.connect("https://socket-io-messenger.herokuapp.com/")
 
+const getLocalStorage = () => {
+    const messages = localStorage.getItem('messages')
+    return messages ? JSON.parse(messages) : []
+    // if there is data saved in local storage, use it. otherwise use to default - []
+}
+
 const Chat = () => {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
     const [message, setMessage] = useState('')
-    const [messages, setMessages] = useState([])
+    const [messages, setMessages] = useState(getLocalStorage)
     const [users, setUsers] = useState('');
     const [showAllUsers, setShowAllUsers] = useState(false)
 
@@ -22,7 +28,7 @@ const Chat = () => {
         const { name, room } = queryString.parse(urlQueries) // returns an object that contain the queries: {name: "...", room: "..."}
         setName(name)
         setRoom(room)
-        socket.emit('join', { name, room }, () => { }) // es6 syntax for "name: name, room: room "
+        socket.emit('join', { name: name, room: room })
     }, [socket])
 
     useEffect(() => {
@@ -30,7 +36,7 @@ const Chat = () => {
             setMessages([...messages, message])
         })
         socket.on("usersInRoom", ({ users }) => {
-            setUsers(users);
+            setUsers(users)
         })
     }
         , [messages, users])
@@ -43,6 +49,7 @@ const Chat = () => {
     }
 
     const smallScreen = window.innerWidth < 480
+    // media query for small screens is 480px max width 
 
     return (
         <div className="outerContainer fade-in">
@@ -56,7 +63,7 @@ const Chat = () => {
                     <OnlineUsers setShowAllUsers={setShowAllUsers} users={users} />
                     :
                     <>
-                        <Messages messages={messages} name={name} />
+                        <Messages messages={messages} name={name} users={users} />
                         <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
                     </>
                 }

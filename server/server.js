@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
     // the "socket" object is being sent from the client every time a we do 'socket.emit'
     console.log(`New Socket ID: ${socket.id}`);
 
-    socket.once('join', ({ name, room }, callback) => {
+    socket.once('join', ({ name, room }) => {
         // we're using socket.once instead of socket.on to prevent multiple request form the same user
         const { newUser } = addUser({ id: socket.id, name, room })
         console.log("new user", newUser)
@@ -30,7 +30,6 @@ io.on("connection", (socket) => {
         socket.join(newUser.room)
 
         io.to(newUser.room).emit('usersInRoom', { room: newUser.room, users: getUsersInRoom(newUser.room) })
-        callback()
     })
 
     socket.on('sendMessage', (message, callback) => {

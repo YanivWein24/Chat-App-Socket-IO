@@ -7,7 +7,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <h1>asd</h1> */}
         <Routes>
           <Route path="/" element={<Join />} />
           <Route path="/chat" element={<Chat />} />
