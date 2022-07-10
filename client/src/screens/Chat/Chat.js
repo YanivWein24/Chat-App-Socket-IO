@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import queryString from 'query-string';
-import io from "socket.io-client";
+import queryString from 'query-string'
+import io from "socket.io-client"
 import InfoBar from "../../components/InfoBar/InfoBar.js"
 import Input from "../../components/Input/Input.js"
 import Messages from "../../components/Messages/Messages"
 import OnlineUsers from "../../components/OnlineUsers/OnlineUsers"
 import "./Chat.css"
 
-const socket = io.connect("https://socket-io-messenger.herokuapp.com/")
+const socket = io.connect("http://192.168.1.184:5000")
 
 const getLocalStorage = () => {
     const messages = localStorage.getItem('messages')
@@ -20,7 +20,7 @@ const Chat = () => {
     const [room, setRoom] = useState('')
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState(getLocalStorage)
-    const [users, setUsers] = useState('');
+    const [users, setUsers] = useState('')
     const [showAllUsers, setShowAllUsers] = useState(false)
 
     useEffect(() => {

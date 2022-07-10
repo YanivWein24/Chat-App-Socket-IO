@@ -6,11 +6,11 @@ import ReactEmoji from 'react-emoji'
 const Message = ({ message: { text, user, time }, name }) => {
     // inside server.js we call 'sendMessage' and emit a new message containing the user and the text.
     // now we destruct this object to receive both of the values.  
-    let sentByCurrentUser = false;
+    let sentByCurrentUser = false
     const trimmedName = name.trim().toLowerCase()
     // convert the given name the exact same way we did when we added the user ('addUser' method in 'users.js')
     if (user === trimmedName) {
-        sentByCurrentUser = true;
+        sentByCurrentUser = true
     }
 
     const userIsAdmin = user === "Admin"

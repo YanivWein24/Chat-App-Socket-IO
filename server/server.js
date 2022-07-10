@@ -5,28 +5,25 @@ const cors = require("cors")
 const path = require('path')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js')
 
-const app = express();
-app.use(cors());
-const server = http.createServer(app);
+const app = express()
+app.use(cors())
+const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: "https://socket-io-messenger.herokuapp.com/",
+        origin: "http://192.168.1.184:3000",
         methods: ["GET", "POST"],
     },
-});
+})
 
 // convert from heroku's server time zone to israel's time zone (GMT0 -> GMT+3)
 const herokuToIsraelTimeZone = (hours) => {
-    if (hours === 21) return 0
-    else if (hours === 22) return 1
-    else if (hours === 23) return 2
-    else { return hours + 3 }
+    return hours === 21 ? 0 : hours === 22 ? 1 : hours === 23 ? 2 : hours + 3
 }
 
 io.on("connection", (socket) => {
     // the "socket" object is being sent from the client every time a we do 'socket.emit'
-    console.log(`New Socket ID: ${socket.id}`);
+    console.log(`New Socket ID: ${socket.id}`)
 
     socket.once('join', ({ name, room }) => {
         // we're using socket.once instead of socket.on to prevent multiple request form the same user
@@ -48,11 +45,10 @@ io.on("connection", (socket) => {
             const date = new Date()
             const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
             const time = `${herokuToIsraelTimeZone(date.getHours())}:${minutes}`
-            console.log(time)
             io.to(user.room).emit('message', { user: user.name, text: message, time: time })
             callback()
         }
-    });
+    })
 
     // get called from the client using 'socket.disconnect()'
     socket.on('disconnect', () => {
@@ -66,7 +62,7 @@ io.on("connection", (socket) => {
             console.log(`${user.name} has disconnected`)
         }
     })
-});
+})
 
 //? ----------------------------- While in production: -----------------------------
 

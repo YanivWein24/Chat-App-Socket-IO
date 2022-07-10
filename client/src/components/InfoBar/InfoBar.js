@@ -5,7 +5,7 @@ const InfoBar = ({ room, users, showAllUsers, setShowAllUsers }) => {
     return (
         <div className="infoBar">
             <div className="leftInnerContainer">
-                <i class="fa-solid fa-comment-dots roomIcon"></i>
+                <i className="fa-solid fa-comment-dots roomIcon"></i>
 
                 <h3>Room: {room}</h3>
                 <i className="onlineIcon fa-solid fa-circle ml-10" alt="online icon"></i>

@@ -20,7 +20,7 @@ const Join = () => {
                 </div>
                 {/* if there is no value for 'name' or 'room', prevent default and stay in the same route, else continue as usual  */}
                 <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
-                    <button className='button' type="submit">Sign In</button>
+                    <button className='button'>Sign In</button>
                 </Link>
             </div>
         </div>
