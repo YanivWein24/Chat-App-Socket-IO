@@ -7,7 +7,7 @@ import Messages from "../../components/Messages/Messages"
 import OnlineUsers from "../../components/OnlineUsers/OnlineUsers"
 import "./Chat.css"
 
-const socket = io.connect("http://192.168.1.184:5000")
+const socket = io.connect("https://socket-io-messenger.herokuapp.com/")
 
 const getLocalStorage = () => {
     const messages = localStorage.getItem('messages')
