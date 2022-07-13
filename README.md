@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# React & Socket-IO Chat App!
+A chat application Built with React on the front-end and Socket-IO on the back-end. <br />
+Create a new room or join an existing one, and chat with your friends online! <br />
+Compatible with both desktops and mobile devices. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Features:
+* Chat online with other users around the world!
+* Everyone can join or create a new room for free.
+* Cross Platform - can be used on both desktops and mobile devices.
+* Support for all the classic emojis.
+* Saving messages in locale storage, in case a user logs out and then logs back in (Not applied if the user is the only one in the room).
+* Dedicated screen that presents the current users in a room.
+* Automatically notify other members in the room when a user logs-out or a new user logs-in.
+* Scroll to bottom button, with smooth animation and a custom scroll bar
 
-In the project directory, you can run:
+## Where can i check this out?
+Right Here:  https://socket-io-messenger.herokuapp.com/
+<br />
 
-### `npm start`
+## Screenshots:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="center">
+<table>
+<tr>
+<td>Join Screen</td>
+<td>Chat Screen</td>
+</tr>
+<tr>
+<td><img src="https://user-images.githubusercontent.com/97472180/178721237-1c021e78-61a9-4b30-980c-53a7b2f9f457.PNG" height="300" width="550" alt="UserScreen">  </td>
+<td><img src="https://user-images.githubusercontent.com/97472180/178511493-91d1e17a-3203-4f45-b74c-eb87b28b019b.PNG" height="300" width="450" alt="EmptyUserScreen" >  </td>
+</tr>
+</table>
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### On Mobile:  
+<p align="center">
+<table>
+  <tr>
+    <td>Join Screen</td>
+     <td>Chat Screen</td>
+     <td>All Users Screen</td>
+  </tr>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/97472180/178721231-551a6b4f-2364-41b6-90cd-4e119644abf3.jpg" width=300 height=580></td>
+    <td><img src="https://user-images.githubusercontent.com/97472180/178721239-14f8f652-2105-4306-865d-b2dcadf8a698.jpg" width=300 height=580></td>
+    <td><img src="https://user-images.githubusercontent.com/97472180/178721241-80d4a4c7-9f13-4c49-b35c-d142124672bb.jpg" width=300 height=580></td>
+  </tr>
+ </table>
+</p>
