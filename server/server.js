@@ -11,7 +11,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: "https://socket-io-messenger.herokuapp.com/",
+        origin: "https://socket-io-messenger.herokuapp.com/", // On development: "http://192.168.1.184:3000"
         methods: ["GET", "POST"],
     },
 })
@@ -23,12 +23,10 @@ const herokuToIsraelTimeZone = (hours) => {
 
 io.on("connection", (socket) => {
     // the "socket" object is being sent from the client every time a we do 'socket.emit'
-    console.log(`New Socket ID: ${socket.id}`)
 
     socket.once('join', ({ name, room }) => {
         // we're using socket.once instead of socket.on to prevent multiple request form the same user
         const { newUser } = addUser({ id: socket.id, name, room })
-        console.log("new user", newUser)
         const date = new Date()
         const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
         const time = `${herokuToIsraelTimeZone(date.getHours())}:${minutes}`
@@ -59,7 +57,6 @@ io.on("connection", (socket) => {
             const time = `${herokuToIsraelTimeZone(date.getHours())}:${minutes}`
             io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.`, time: time })
             io.to(user.room).emit('usersInRoom', { room: user.room, users: getUsersInRoom(user.room) })
-            console.log(`${user.name} has disconnected`)
         }
     })
 })

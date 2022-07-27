@@ -19,7 +19,6 @@ const addUser = ({ id, name, room }) => {
 const removeUser = (id) => {
     const user = users.find((user) => user.id === id)
     if (user) {
-        console.log("Removing user:", user)
         users = users.filter((existingUser) => existingUser.id !== user.id)
         return user
     }

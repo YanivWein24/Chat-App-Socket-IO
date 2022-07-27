@@ -6,7 +6,7 @@ const Input = ({ message, setMessage, sendMessage }) => {
         document.getElementById("text").value = ""
     }
 
-    const longMessage = message.length > 35
+    const length = message.length < 35 ? "short" : message.length < 75 ? "medium" : message.length < 110 ? "long" : "extraLong"
 
     return (
         <form className="form fade-in">
@@ -14,12 +14,12 @@ const Input = ({ message, setMessage, sendMessage }) => {
                 className="text"
                 id="text"
                 placeholder="Type a message..."
-                rows={longMessage ? 2 : 1}
+                rows={length === "extraLong" ? 4 : length === "long" ? 3 : length === "medium" ? 2 : 1}
                 value={message}
                 onChange={e => setMessage(e.target.value)}
                 onKeyPress={e => e.key === 'Enter' && (sendMessage(e), eraseTextArea())}
             />
-            <button className="sendButton" onClick={e => (sendMessage(e), eraseTextArea())}>
+            <button className="sendButton" onClick={e => { sendMessage(e); eraseTextArea() }}>
                 <i className="fa-solid fa-arrow-right" style={{ fontSize: "1.7rem" }}></i>
             </button>
         </form>
