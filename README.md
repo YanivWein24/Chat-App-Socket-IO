@@ -1,7 +1,7 @@
 # React & Socket-IO Chat App!
-A chat application Built with React on the front-end and Socket-IO on the back-end. <br />
+A cross-platform chat application Built with React on the front-end and Socket-IO on the back-end. <br />
 Create a new room or join an existing one, and chat with your friends online! <br />
-Compatible with both desktops and mobile devices. 
+Responsive and well suited for both desktop and mobile.
 
 
 ## Features:
