@@ -11,7 +11,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: "https://socket-io-messenger.herokuapp.com/", // On development: "http://192.168.1.184:3000"
+        origin: "https://chat-app-faoy.onrender.com/", // On development: "http://192.168.1.184:3000"
         methods: ["GET", "POST"],
     },
 })
