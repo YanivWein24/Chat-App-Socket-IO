@@ -1,21 +1,27 @@
 # React & Socket-IO Chat App!
+
+<img align="center" src="https://user-images.githubusercontent.com/97472180/191557958-d28c9db2-dc75-4e8b-a4f9-bf31f71633b3.gif"
+alt="My Project GIF" width="600" height="323">  
+<br>
+
 A cross-platform chat application Built with React on the front-end and Socket-IO on the back-end. <br />
 Create a new room or join an existing one, and chat with your friends online! <br />
 Responsive and well suited for both desktop and mobile.
 
-
 ## Features:
-* Chat online with other users around the world!
-* Everyone can join or create a new room for free.
-* Cross Platform - can be used on both desktops and mobile devices.
-* Support for all the classic emojis.
-* Saving messages in locale storage, in case a user logs out and then logs back in (Not applied if the user is the only one in the room).
-* Dedicated screen that presents the current users in a room.
-* Automatically notify other members in the room when a user logs-out or a new user logs-in.
-* Scroll to bottom button, with smooth animation and a custom scroll bar
+
+- Chat online with other users around the world!
+- Everyone can join or create a new room for free.
+- Cross Platform - can be used on both desktops and mobile devices.
+- Support for all the classic emojis.
+- Saving messages in locale storage, in case a user logs out and then logs back in (Not applied if the user is the only one in the room).
+- Dedicated screen that presents the current users in a room.
+- Automatically notify other members in the room when a user logs-out or a new user logs-in.
+- Scroll to bottom button, with smooth animation and a custom scroll bar
 
 ## Where can i check this out?
-Right Here:  https://socket-io-messenger.herokuapp.com/
+
+Right Here: https://chat-app-faoy.onrender.com/
 <br />
 
 ## Screenshots:
@@ -33,7 +39,8 @@ Right Here:  https://socket-io-messenger.herokuapp.com/
 </table>
 </p>
 
-### On Mobile:  
+### On Mobile:
+
 <p align="center">
 <table>
   <tr>
