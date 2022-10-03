@@ -12,11 +12,12 @@ const InfoBar = ({ room, users, showAllUsers, setShowAllUsers }) => {
             </div>
             <div className="rightInnerContainer">
                 {showAllUsers === false &&
-                    <button className="showUsers" onClick={() => setShowAllUsers(!showAllUsers)}>
+                    <button className="showUsers" aria-label="showUsers" onClick={() => setShowAllUsers(!showAllUsers)}>
                         <i className="fa-solid fa-user-group" />
                     </button>
                 }
                 <a href="/"
+                    aria-label="exitRoom"
                     // delete the jokes from localStorage if the user don't want them anymore
                     onClick={() => users.length >= 2 && !window.confirm("Do you wish to save the messages in local Storage for the next time?")
                         && localStorage.setItem('messages', [])}><i className="fa-solid fa-circle-xmark exitButton"></i></a>

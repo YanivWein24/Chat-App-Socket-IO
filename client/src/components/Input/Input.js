@@ -19,7 +19,7 @@ const Input = ({ message, setMessage, sendMessage }) => {
                 onChange={e => setMessage(e.target.value)}
                 onKeyPress={e => e.key === 'Enter' && (sendMessage(e), eraseTextArea())}
             />
-            <button className="sendButton" onClick={e => { sendMessage(e); eraseTextArea() }}>
+            <button className="sendButton" aria-label="sendMessage" onClick={e => { sendMessage(e); eraseTextArea() }}>
                 <i className="fa-solid fa-arrow-right" style={{ fontSize: "1.7rem" }}></i>
             </button>
         </form>
