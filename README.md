@@ -6,8 +6,12 @@ alt="My Project GIF" width="600" height="323">
 
 A cross-platform chat application Built with React on the front-end and Socket-IO on the back-end. <br />
 Create a new room or join an existing one, and chat with your friends online! <br />
-Responsive and well suited for both desktop and mobile.
+Responsive and well suited for both desktop and mobile.  
 
+## Where can i check this out?
+
+Right Here: https://chat-app-faoy.onrender.com/
+<br />
 ## Features:
 
 - Chat online with other users around the world!
@@ -19,10 +23,10 @@ Responsive and well suited for both desktop and mobile.
 - Automatically notify other members in the room when a user logs-out or a new user logs-in.
 - Scroll to bottom button, with smooth animation and a custom scroll bar
 
-## Where can i check this out?
+## Lighthouse Score:  
+<img src="https://user-images.githubusercontent.com/97472180/194721028-501139db-09ed-47a0-aed9-2445a4973a0e.png" height="180" width="500" alt="HomeScreen-light"/>
 
-Right Here: https://chat-app-faoy.onrender.com/
-<br />
+
 
 ## Screenshots:
 
